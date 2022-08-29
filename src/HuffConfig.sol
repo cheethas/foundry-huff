@@ -87,6 +87,15 @@ contract HuffConfig {
         return this;
     }
 
+  /// @notice sets a constant to a int256 value in the current compilation environment
+  function with_int_constant(
+    string memory key,
+    int256 value
+  ) public returns (HuffConfig) {
+    const_overrides.push(Constant(key, bytesToString(abi.encodePacked(value))));
+    return this;
+  }
+
     /// @notice sets whether to broadcast the deployment
     function set_broadcast(bool broadcast) public returns (HuffConfig) {
         should_broadcast = broadcast;
